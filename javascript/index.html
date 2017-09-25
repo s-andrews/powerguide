@@ -1,0 +1,37 @@
+<html>
+<meta charset="UTF-8"> 
+	<head>
+		<script src="https://unpkg.com/vue"></script>
+
+	</head>
+	<body>
+
+		<div id="app">
+
+			<h1>Welcome to PowerGuide</h1>
+
+			<h2>{{ question_text }}</h2>
+
+			<p>
+				{{ question_explanation }}
+			</p>
+	
+			<select>
+				<option v-for="answer in answers">
+					{{answer.text}}
+				</option>
+			</select>
+
+			<p>
+				<button v-on:click="reverseMessage">Answer!</button>
+			</p>
+
+
+		</div>
+
+
+		<script src="powerguide.js"></script>
+
+
+	</body>
+</html>
