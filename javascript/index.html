@@ -16,14 +16,16 @@
 				{{ question_explanation }}
 			</p>
 	
-			<div v-for="answer in answers">
-				<input type="radio" name="question" v-bind:value="answer.text" v-model="selected_answer">
-					{{answer.text}}
-				</input>
+			<div v-if="multiple_choice">
+				<div v-for="answer in answers">
+					<input type="radio" name="question" v-bind:value="answer.explanation" v-model="answer_explanation">
+						{{answer.text}}
+					</input>
+				</div>
 			</div>
 
 		<p>
-			Answer was {{selected_answer}}
+			{{answer_explanation}}
 		</p>
 
 
