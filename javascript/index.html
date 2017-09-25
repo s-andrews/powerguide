@@ -2,7 +2,6 @@
 <meta charset="UTF-8"> 
 	<head>
 		<script src="https://unpkg.com/vue"></script>
-
 	</head>
 	<body>
 
@@ -18,10 +17,15 @@
 	
 			<div v-if="multiple_choice">
 				<div v-for="answer in answers">
-					<input type="radio" name="question" v-bind:value="answer.explanation" v-model="answer_explanation">
+					<input type="radio" name="question" v-bind:value="answer.text" v-model="selected_answer" v-on:click="update_explanation(answer.explanation)">
 						{{answer.text}}
 					</input>
 				</div>
+			</div>
+
+			<div v-if="text_input">
+				We need some text here...
+				<input type="text" v-model="text_answer">
 			</div>
 
 		<p>
@@ -31,6 +35,13 @@
 
 		<button v-on:click="next_question">Next question</button>
 
+		<h2>Answers so far</h2>
+
+		<ul>
+			<li v-for="(previous_answer, previous_question) in user_answers">
+				{{previous_question}} = {{previous_answer}}
+			</li>
+		</ul> 
 		</div>
 
 
