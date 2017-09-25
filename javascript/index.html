@@ -16,16 +16,18 @@
 				{{ question_explanation }}
 			</p>
 	
-			<select>
-				<option v-for="answer in answers">
+			<div v-for="answer in answers">
+				<input type="radio" name="question" v-bind:value="answer.text" v-model="selected_answer">
 					{{answer.text}}
-				</option>
-			</select>
+				</input>
+			</div>
 
-			<p>
-				<button v-on:click="reverseMessage">Answer!</button>
-			</p>
+		<p>
+			Answer was {{selected_answer}}
+		</p>
 
+
+		<button v-on:click="next_question">Next question</button>
 
 		</div>
 

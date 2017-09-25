@@ -8,12 +8,13 @@ var app = new Vue({
 			{ text: 'Option 2' },
 			{ text: 'Option 3' },
 			{ text: 'Option 4' },
-		]
+		],
+		selected_answer: 'no answer'
 	},
 
 	methods: {
-		reverseMessage: function () {
-			this.message = 'Another message'
+		next_question: function () {
+			this.question_text = 'What is your quest'
 		}
 	}
 })
