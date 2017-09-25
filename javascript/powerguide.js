@@ -141,12 +141,55 @@ var app = new Vue({
 				this.user_answers[this.question] = this.text_answer;
 			}		
 
-			if (this.question == 'type') {
-				this.question='normal'
+			switch(this.question) {
+
+				case "type":
+					this.question = 'groups';
+					break;	
+
+				case 'groups':
+					if (this.user_answers['type'] == 'Continuous') {
+						this.question = 'normal'
+					}
+					else {
+						this.question = 'start_proportion'
+					}
+					break
+
+				case 'start_proportion':
+					if (this.user_answers['groups'] == '1') {
+						this.question = 'power'
+					}
+					else {
+						this.question = 'end_proportion'
+					}	
+					break
+
+				case 'end_proportion':
+					this.question = 'power'
+					break
+
+				case 'normal':
+					this.question = 'effect_size';
+					break
+				
+				case 'effect_size':
+					this.question = 'variance';
+					break
+				
+				case 'variance':
+					this.question = 'power';
+					break
+
+				case 'power':
+					this.question = 'significance';
+					break
+
+				case 'significance':
+					alert("We're finished!")
+
 			}
-			else {
-				this.question='type'
-			}	
+
 			this.refresh_question()
 		},
 
@@ -158,6 +201,7 @@ var app = new Vue({
 			this.question_explanation = questions[this.question].question_explanation;
 			this.answers = questions[this.question].answers;
 			this.selected_answer = '';
+			this.text_answer = '';
 			this.answer_explanation = '';
 
 		},
