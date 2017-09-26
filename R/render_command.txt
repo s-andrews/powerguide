@@ -1,0 +1,1 @@
+Rscript -e 'Sys.setenv(RSTUDIO_PANDOC="/usr/lib/rstudio/bin/pandoc") ; rmarkdown::render("2_sample_continuous.Rmd", quiet=TRUE, output_file="test.html")'
