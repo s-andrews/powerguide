@@ -15,6 +15,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+![](powerguide_logo.png)
+
 #Power Analysis
 
 This document provides an automated power analysis for use during experimental design.  The output below shows the R code used to perform the power analysis along with an exploration of some of the variables supplied to show what options you would have were some of the values entered later proved to be somewhat inaccurate.
@@ -147,9 +149,9 @@ abline(h=power.result$n, col="red2")
 
 ```
 
+![](powerguide_logo.png)
 
 ![](babraham.png)
-
 
 
 
