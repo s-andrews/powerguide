@@ -1,0 +1,142 @@
+---
+title: "Power Analysis"
+author: "Power Guide (github.com/s-andrews/powerguide)"
+date: "26 September 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Power Analysis
+
+
+#### Assumptions
+
+
+* Type of data : Continuous
+
+* Behaviour : Normally distributed
+
+* Number of conditions: 2
+
+* Power of detection: 0.8
+
+* Signficnace threshold : 0.05
+
+* Minimum biologically relevant difference : 10
+
+* Estimated standard deviation : 3
+
+```{r}
+  power.of.detection <- 0.8
+  significance.threshold <- 0.05
+  minimum.difference <- 10
+  standard.deviation <- 3
+```
+
+
+
+
+## Basic Power Analysis
+
+
+```{r}
+power.t.test(
+  type = "two.sample",
+  alternative = "two.sided",
+  power = power.of.detection,
+  sig.level = significance.threshold,
+  delta = minimum.difference,
+  sd = standard.deviation
+) -> power.result
+
+power.result
+```
+
+This shows that with the assumptions presented here you would need **`r I(ceiling(power.result$n))`** samples in each group to do what you want.
+
+
+## Exploration
+
+Since some of the values you put into the power analysis might well be estimates we can also look at the effect it would have on the sample size if some of the estimates were to prove inaccurate.
+
+
+#### Varying Standard Deviation
+
+Standard deviation is by far the hardest parameter to estimate in a power analysis since there is often little or no data to support the value provided.  Here we can look at the effect which varying this would have.
+
+```{r fig.height=7, fig.width=7}
+
+sd.range <- seq(from=standard.deviation/5, to=standard.deviation*5, length.out= 100)
+sapply(sd.range,function(x) power.t.test(
+                              type = "two.sample",
+                              alternative = "two.sided",
+                              power = power.of.detection,
+                              sig.level = significance.threshold,
+                              delta = minimum.difference,
+                              sd = x)$n
+) -> n.values
+
+
+plot(
+  sd.range,
+  n.values,
+  las=1,
+  xlab="Standard Deviation",
+  ylab="Number of samples required per group",
+  main="Effect on sample size of varying Standard Deviation",
+  log="y"
+    )
+
+abline(v=standard.deviation,col="red2")
+abline(h=power.result$n, col="red2")
+
+
+
+```
+
+
+#### Varying Minimum Difference
+
+Sometimes, if an initial power analysis provides unrealisitic sample numbers it can be useful what sort of effect size you could actually detect with different sample sizes.
+
+```{r fig.height=7, fig.width=7}
+
+effect.range <- seq(from=minimum.difference/5, to=minimum.difference*5, length.out= 100)
+sapply(effect.range,function(x) power.t.test(
+                              type = "two.sample",
+                              alternative = "two.sided",
+                              power = power.of.detection,
+                              sig.level = significance.threshold,
+                              delta = x,
+                              sd = standard.deviation)$n
+) -> n.values
+
+
+plot(
+  effect.range,
+  n.values,
+  las=1,
+  xlab="Minimum Effect Size",
+  ylab="Number of samples required per group",
+  main="Effect on sample size of varying minimum effect size",
+  log = "y"
+    )
+
+abline(v=minimum.difference,col="red2")
+abline(h=power.result$n, col="red2")
+
+
+
+```
+
+
+
+
+
+
+
+
+
