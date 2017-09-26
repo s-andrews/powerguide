@@ -3,6 +3,11 @@ import os
 import shutil
 import subprocess
 import shlex
+import cgi
+
+# For development only
+import cgitb
+cgitb.enable()
 
 # Set some global preferences
 
@@ -63,7 +68,30 @@ def run_analysis (template,variables):
 
 if (__name__ == "__main__"):
 
-	template = template_dir+"2_sample_continuous.Rmd"
+	# Read in the options from the web server
+	options = cgi.FieldStorage()
 
-	run_analysis(template,{"power":0.8,"significance":0.05,"difference":10,"variance":5})
+	# We need to figure out what template we're going to use,
+	# and what options we need to pass on to the template to
+	# generate the correct report.
+
+	if options["type"].value == "Continuous" and options["groups"].value == "2" and options["normal"].value == "Yes":
+		template = template_dir+"2_sample_continuous.Rmd"		
+
+		field_values = {"power": options["power"].value,"significance": options["significance"].value, "difference": options["difference"].value, "variance": options["variance"].value}
+
+		run_analysis(template,field_values)
+
+
+	else:
+
+		print ("Content-type: text/plain\n")
+		print ("Not supported yet...")
+		print(options["type"].value)
+
+
+
+#	template = template_dir+"2_sample_continuous.Rmd"
+
+#	run_analysis(template,{"power":0.8,"significance":0.05,"difference":10,"variance":5})
 
