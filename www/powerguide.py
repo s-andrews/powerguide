@@ -82,7 +82,6 @@ if (__name__ == "__main__"):
 
 		run_analysis(template,field_values)
 
-
 	elif options["type"].value == "Continuous" and options["groups"].value == "1" and options["normal"].value == "Yes":
 		template = template_dir+"1_sample_continuous.Rmd"		
 

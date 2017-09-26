@@ -65,7 +65,7 @@ var questions = {
 
 				variance: {
 					question_text: 'What is your expected level of variation between samples in the same condition?',
-					question_explanation: 'Use whatever units you would use to measure the data',
+					question_explanation: 'The value we need is the standard deviation, ie how far on average each individually measured value is likely to fall from the mean',
 					multiple_choice: false,
 					text_input: true,
 				},
