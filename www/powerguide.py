@@ -83,6 +83,19 @@ if (__name__ == "__main__"):
 		run_analysis(template,field_values)
 
 
+	elif options["type"].value == "Continuous" and options["groups"].value == "1" and options["normal"].value == "Yes":
+		template = template_dir+"1_sample_continuous.Rmd"		
+
+		field_values = {"power": options["power"].value,"significance": options["significance"].value, "difference": options["effect_size"].value, "variance": options["variance"].value}
+
+		run_analysis(template,field_values)
+
+
+
+
+
+
+
 	else:
 
 		print ("Content-type: text/plain\n")
