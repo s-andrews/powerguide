@@ -11,7 +11,7 @@ output:
       collapsed: false
 ---
 
-```{r setup, include=FALSE}
+```{{r setup, include=FALSE}}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -38,28 +38,25 @@ The assumptions made in this particular analysis are:
 
 * Number of conditions: 2
 
-* Power of detection: 0.8
+* Power of detection: {power}
 
-* Signficnace threshold : 0.05
+* Signficnace threshold : {significance}
 
-* Minimum biologically relevant difference : 10
+* Minimum biologically relevant difference : {difference}
 
-* Estimated standard deviation : 3
+* Estimated standard deviation : {variance}
 
-```{r}
-  power.of.detection <- 0.8
-  significance.threshold <- 0.05
-  minimum.difference <- 10
-  standard.deviation <- 3
+```{{r}}
+  power.of.detection <- {power}
+  significance.threshold <- {significance}
+  minimum.difference <- {difference}
+  standard.deviation <- {variance}
 ```
-
-
-
 
 ## Basic Power Analysis
 
 
-```{r}
+```{{r}}
 power.t.test(
   type = "two.sample",
   alternative = "two.sided",
@@ -84,7 +81,7 @@ Since some of the values you put into the power analysis might well be estimates
 
 Standard deviation is by far the hardest parameter to estimate in a power analysis since there is often little or no data to support the value provided.  Here we can look at the effect which varying this would have.
 
-```{r fig.height=7, fig.width=7}
+```{{r fig.height=7, fig.width=7}}
 
 sd.range <- seq(from=standard.deviation/5, to=standard.deviation*5, length.out= 100)
 sapply(sd.range,function(x) power.t.test(
@@ -119,7 +116,7 @@ abline(h=power.result$n, col="red2")
 
 Sometimes, if an initial power analysis provides unrealisitic sample numbers it can be useful what sort of effect size you could actually detect with different sample sizes.
 
-```{r fig.height=7, fig.width=7}
+```{{r fig.height=7, fig.width=7}}
 
 effect.range <- seq(from=minimum.difference/5, to=minimum.difference*5, length.out= 100)
 sapply(effect.range,function(x) power.t.test(
