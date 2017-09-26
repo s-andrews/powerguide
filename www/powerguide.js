@@ -186,7 +186,17 @@ var app = new Vue({
 					break
 
 				case 'significance':
-					alert("We're finished!")
+					url = "powerguide.py?"
+
+					for (key in this.user_answers) {
+						url += key
+						url += "="
+						url += this.user_answers[key]
+						url += "&"
+					}	
+
+					window.location.href=url
+					break;
 
 			}
 

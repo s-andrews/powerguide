@@ -78,7 +78,7 @@ if (__name__ == "__main__"):
 	if options["type"].value == "Continuous" and options["groups"].value == "2" and options["normal"].value == "Yes":
 		template = template_dir+"2_sample_continuous.Rmd"		
 
-		field_values = {"power": options["power"].value,"significance": options["significance"].value, "difference": options["difference"].value, "variance": options["variance"].value}
+		field_values = {"power": options["power"].value,"significance": options["significance"].value, "difference": options["effect_size"].value, "variance": options["variance"].value}
 
 		run_analysis(template,field_values)
 
