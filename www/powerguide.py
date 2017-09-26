@@ -4,6 +4,7 @@ import shutil
 import subprocess
 import shlex
 import cgi
+import sys
 
 # For development only
 import cgitb
@@ -54,12 +55,10 @@ def run_analysis (template,variables):
 	subprocess.call(shlex.split("Rscript -e 'Sys.setenv(RSTUDIO_PANDOC=\"{pandoc}\") ; rmarkdown::render(\"{dir}/script.Rmd\", quiet=TRUE, output_file=\"{dir}/output.html\")'".format(pandoc=pandoc_location,dir=tempDir.name)))
 	
 	# Read and output the HTML
+	sys.stdout.buffer.write(b"Content-Type: text/html\n\n")
 
-	print ("Content-type: text/html\n")
-
-	with open(tempDir.name+"/output.html") as file:
-		print(file.read())
-
+	with open(tempDir.name+"/output.html","rb") as file:
+		sys.stdout.buffer.write(file.read())
 
 	# Clean up
 	tempDir.cleanup()
@@ -87,13 +86,12 @@ if (__name__ == "__main__"):
 
 		field_values = {"power": options["power"].value,"significance": options["significance"].value, "difference": options["effect_size"].value, "variance": options["variance"].value}
 
+	elif options["type"].value == "Categorical" and options["groups"].value == "2" :
+		template = template_dir+"2_sample_categorical.Rmd"		
+
+		field_values = {"power": options["power"].value,"significance": options["significance"].value, "start_proportion": options["start_proportion"].value, "end_proportion": options["end_proportion"].value}
+
 		run_analysis(template,field_values)
-
-
-
-
-
-
 
 	else:
 
