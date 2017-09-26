@@ -15,7 +15,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-![](powerguide_logo.png)
+[![](powerguide_logo.png)](index.html)
 
 #Power Analysis
 
