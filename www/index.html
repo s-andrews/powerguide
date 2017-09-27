@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html>
 <meta charset="UTF-8"> 
 	<head>
 		<script src="https://unpkg.com/vue"></script>
+		<link href="powerguide.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 
@@ -9,7 +11,12 @@
 	
 			<p><img src="powerguide_logo.png"></p>
 
-			<h2>{{ question_text }}</h2>
+			<hr width="50%">
+
+			<h2>Question {{ question_number }}</h2>
+			<h2 id="question">{{ question_text }}</h2>
+
+			<hr width="50%">
 
 			<p>
 				{{ question_explanation }}
@@ -36,14 +43,17 @@
 		<button v-on:click="next_question">Next question</button>
 
 
-
+		<div id="answers">
 		<h2>Answers so far</h2>
 
 		<ul>
 			<li v-for="(previous_answer, previous_question) in user_answers">
 				{{previous_question}} = {{previous_answer}}
 			</li>
-		</ul> 
+		</ul>
+
+		</div>
+ 
 		</div>
 
 

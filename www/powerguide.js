@@ -118,6 +118,7 @@ var app = new Vue({
 		multiple_choice: true,
 		text_input: false,
 		user_answers: {},
+		question_number: 1
 	},
 
 
@@ -139,7 +140,9 @@ var app = new Vue({
 			}
 			else {
 				this.user_answers[this.question] = this.text_answer;
-			}		
+			}
+
+			this.question_number += 1;
 
 			switch(this.question) {
 
