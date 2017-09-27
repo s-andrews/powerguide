@@ -136,9 +136,15 @@ var app = new Vue({
 		next_question: function () {
 
 			if (questions[this.question].multiple_choice) {
+				if (this.selected_answer =="") {
+					return;
+				}
 				this.user_answers[this.question] = this.selected_answer;
 			}
 			else {
+				if (this.text_answer == null || this.text_answer == "") {
+					return;
+				}
 				this.user_answers[this.question] = this.text_answer;
 			}
 
