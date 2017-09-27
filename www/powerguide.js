@@ -248,7 +248,7 @@ var app = new Vue({
 						url += "&"
 					}	
 
-					window.location.href=url
+					window.location.href=encodeURI(url)
 					break;
 
 			}

@@ -86,6 +86,17 @@ if (__name__ == "__main__"):
 
 		field_values = {"power": options["power"].value,"significance": options["significance"].value, "difference": options["effect_size"].value, "variance": options["variance"].value}
 
+		run_analysis(template,field_values)
+
+
+	elif options["type"].value == "Continuous" and options["groups"].value[:1] == "3" and options["normal"].value == "Yes":
+		template = template_dir+"3_sample_continuous.Rmd"		
+
+		field_values = {"group_number": options["group_number"].value, "variance_between":options["variance_between"].value, "power": options["power"].value,"significance": options["significance"].value, "difference": options["effect_size"].value, "variance": options["variance"].value}
+
+		run_analysis(template,field_values)
+
+
 	elif options["type"].value == "Categorical" and options["groups"].value == "2" :
 		template = template_dir+"2_sample_categorical.Rmd"		
 
