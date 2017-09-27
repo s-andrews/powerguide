@@ -56,6 +56,13 @@ var questions = {
 					text_input: false,
 				},
 
+				group_number: {
+					question_text: 'Exactly how many experimental conditions do you have?',
+					question_explanation: 'Where there are more than 2 groups the power to detect changes will depend on exactly how many there are.',
+					multiple_choice: false,
+					text_input: true,
+				},
+
 				effect_size: {
 					question_text: 'What is the minimum difference you would consider to be biologically relevant?',
 					question_explanation: 'Statistical tests generally don\'t care about the size of an effect, just how reproducible it is.  You should therefore also think about the smallest absolute difference which you would consider to be biologically interesting.  In general, smaller effects will require higher sample numbers in order to confidently detect them.',
@@ -69,6 +76,14 @@ var questions = {
 					multiple_choice: false,
 					text_input: true,
 				},
+
+				variance_between: {
+					question_text: 'What is your expected level of variation between the means of different groups?',
+					question_explanation: 'When comparing multiple (more than 2) groups we also need an estimate of how much noise will be in the means of the different groups if no biological change is occurring.',
+					multiple_choice: false,
+					text_input: true,
+				},
+
 
 				power: {
 					question_text: 'How likely (in percent) do you want to make it that you will detect a minimal effect if it is present?',
@@ -162,13 +177,28 @@ var app = new Vue({
 					break;	
 
 				case 'groups':
+					if (this.user_answers['groups'] == '3+') {
+						this.question = 'group_number';
+					}
+					else {
+						if (this.user_answers['type'] == 'Continuous') {
+							this.question = 'normal'
+						}
+						else {
+							this.question = 'start_proportion'
+						}
+					}
+					break
+
+				case 'group_number':
 					if (this.user_answers['type'] == 'Continuous') {
 						this.question = 'normal'
 					}
 					else {
 						this.question = 'start_proportion'
 					}
-					break
+					break;
+
 
 				case 'start_proportion':
 					if (this.user_answers['groups'] == '1') {
@@ -192,6 +222,15 @@ var app = new Vue({
 					break
 				
 				case 'variance':
+					if (this.user_answers['type'] == 'Continuous' && this.user_answers['groups'] == '3+') {
+						this.question = 'variance_between'
+					}
+					else {
+						this.question = 'power';
+					}
+					break
+
+				case 'variance_between':
 					this.question = 'power';
 					break
 
