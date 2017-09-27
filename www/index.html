@@ -22,11 +22,13 @@
 				{{ question_explanation }}
 			</p>
 	
-			<div v-if="multiple_choice">
-				<div v-for="answer in answers">
-					<input type="radio" name="question" v-bind:value="answer.text" v-model="selected_answer" v-on:click="update_explanation(answer.explanation)">
-						{{answer.text}}
-					</input>
+			<div id="answerwrap">
+				<div v-if="multiple_choice" id="answeroptions">
+					<div v-for="answer in answers">
+						<input type="radio" name="question" v-bind:value="answer.text" v-model="selected_answer" v-on:click="update_explanation(answer.explanation)">
+							{{answer.text}}
+						</input>
+					</div>
 				</div>
 			</div>
 

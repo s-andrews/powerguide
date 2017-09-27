@@ -10,3 +10,8 @@ body {
 #question {
 	color: #CC0000;
 }
+
+#answeroptions {
+	display: inline-block;
+	text-align: left;
+}
