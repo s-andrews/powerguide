@@ -145,6 +145,11 @@ var app = new Vue({
 				if (this.text_answer == null || this.text_answer == "") {
 					return;
 				}
+				// Check that what they've provided is actually a number
+
+				if (isNaN(parseFloat(this.text_answer)) || !isFinite(this.text_answer)) {
+					return;
+				}	
 				this.user_answers[this.question] = this.text_answer;
 			}
 
