@@ -9,7 +9,7 @@
 
 		<div id="app">
 	
-			<p><img src="powerguide_logo.png"></p>
+			<p><a href="index.html"><img src="powerguide_logo.png"></a></p>
 
 			<hr width="50%">
 
@@ -47,15 +47,14 @@
 
 		<div id="answers">
 		<h2>Answers so far</h2>
-
-		<ul>
-			<li v-for="(previous_answer, previous_question) in user_answers">
-				{{previous_question}} = {{previous_answer}}
-			</li>
-		</ul>
-
-		</div>
- 
+			<div id="answeroptions">
+				<ul>
+					<li v-for="(previous_answer, previous_question) in user_answers">
+						{{previous_question}} = {{previous_answer}}
+					</li>
+				</ul>
+			</div>
+ 			</div>
 		</div>
 
 
