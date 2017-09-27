@@ -2,15 +2,15 @@ var questions = {
 
 				type: {
 					question_text: 'What type of data do you have?',
-					question_explanation: 'Data comes in different types',
+					question_explanation: 'Data comes in different types and different statistical tests apply to different types of data. In this case we just need to know the general nature of the measures you\'ll be analysing.',
 					answers: [
 						{ 
 							text: 'Continuous',
-							explanation: 'Continuous data is something like height or weight',
+							explanation: 'Continuous data is something like height or weight. It can potentially adopt any value and the precision is limited only by the accuracy of the measurement.',
 						},
 						{
 							text: 'Categorical',
-							explanation: 'Categorical data is something like yes/no, black/white',
+							explanation: 'Categorical data is something like yes/no, black/white.  It is where the measures are simply the counts of the number of observations for the different categories.',
 						}
 					],
 					multiple_choice: true,
@@ -18,16 +18,16 @@ var questions = {
 				},
 
 				normal: {
-					question_text: 'Is your data normal?',
-					question_explanation: 'Relies on a mean and stdev being meaningful',
+					question_text: 'Are your data normally distributed?',
+					question_explanation: 'Most statistical tests on quantitative data assume that replicates will produce measures which follow a normal distribution.  These types of data show a symmetrical distribution around a central average value, and the distribution can be summarised by 2 values - the mean (average) and the standard deviation',
 					answers: [
 						{ 
 							text: 'Yes',
-							explanation: 'Normal data has a symmetrical distribution around a central mean',
+							explanation: 'The data is either naturally normally distributed or can be made to be so through a simple transformation such as log transforming.',
 						},
 						{
 							text: 'No',
-							explanation: 'Non-normal data can have skewed, biased or even bimodal distributions',
+							explanation: 'The data has a more unusual distribution with skews, subgroups or other characterisitcs which mean that it can\'t be made to behave normally.',
 						}
 					],
 					multiple_choice: true,
@@ -36,7 +36,7 @@ var questions = {
 
 				groups: {
 					question_text: 'How many experimental conditions do you have?',
-					question_explanation: 'Different tests are appropriate for different numbers of comparisons',
+					question_explanation: 'We need to know how many deliberately different biological conditions you will study in the experiment. There are often different statistics which are used depending on how many conditions are in the design.',
 					answers: [
 						{ 
 							text: '1',
@@ -58,7 +58,7 @@ var questions = {
 
 				effect_size: {
 					question_text: 'What is the minimum difference you would consider to be biologically relevant?',
-					question_explanation: 'Use whatever units you would use to measure the data',
+					question_explanation: 'Statistical tests generally don\'t care about the size of an effect, just how reproducible it is.  You should therefore also think about the smallest absolute difference which you would consider to be biologically interesting.  In general, smaller effects will require higher sample numbers in order to confidently detect them.',
 					multiple_choice: false,
 					text_input: true,
 				},
@@ -72,7 +72,7 @@ var questions = {
 
 				power: {
 					question_text: 'How likely (in percent) do you want to make it that you will detect a minimal effect if it is present?',
-					question_explanation: 'Normally most power analyses will use an 80% chance of detection',
+					question_explanation: 'No statistical test can guarantee that you will detect a change, even if it is happening.  You are always sampling from a population so there is an element of uncertainty. Normally most power analyses will use an 80% chance of detection but you could increase this somewhat if you wanted to be more sure of detecting any change which was present.',
 					multiple_choice: false,
 					text_input: true,
 				},
